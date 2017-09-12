@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>23cxy后台管理系统</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" type="text/css" href=" css/bootstrap.css">
+
+    <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/elements.css">
+    <link rel="stylesheet" href=" css/font-awesome.css">
+
+    <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+
+    <!-- Demo page code -->
+
+    <style type="text/css">
+        #line-chart {
+            height: 300px;
+            width: 800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+
+        .brand {
+            font-family: georgia, serif;
+        }
+
+        .brand .first {
+            color: #ccc;
+            font-style: italic;
+        }
+
+        .brand .second {
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body style="width:99.7%">
+<div class="superWrap clearfix"    >
+    <div class="super-header ">
+        <iframe src="mian_top.html" id="Pubheader" name="Pubheader" width="100%" height="40" marginheight="0"
+                marginwidth="0" scrolling="no" frameborder="0"  ></iframe>
+    </div>
+    <div class="superContent">
+        <div class="super-side-menu">
+            <iframe src="main_left.html" width="100%" height="555px"  frameborder="0"  marginheight="0" marginwidth="0" scrolling="no"></iframe>
+        </div>
+        <div class="superCtab superCtabBot"  >
+            <iframe src="content.html" id="Mainindex" name="Mainindex"  width="100%" height="555px" marginheight="0"
+                     marginwidth="0"  ></iframe>
+        </div>
+        <div class="superFooter">
+            <iframe src="main_footer.html" width="100%" height="30px" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+        </div>
+        <!--main-->
+    </div>
+    <!--content E-->
+
+</div>
+
+<script src="js/bootstrap.js"></script>
+<script type="text/javascript">
+    $("[rel=tooltip]").tooltip();
+    $(function () {
+        $('.demo-cancel-click').click(function () {
+            return false;
+        });
+    });
+</script>
+
+</body>
+</html>
+
+
