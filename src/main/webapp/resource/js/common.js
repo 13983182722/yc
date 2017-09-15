@@ -8,9 +8,9 @@ function stateFormatter(value, row, index) {
 	return value == 1 ? "正常" : "<font color='red'>禁用</font>";
 }
 
-//信息阅读状态
-function msgStateFormatter(value, row, index) {
-	return value == 1 ? "已读" : "<font color='red'>未读</font>";
+//客户等级
+function levelFormatter(value, row, index) {
+	return value == 1 ? "普通客户" : "贵宾";
 }
 
 // 因为datagrid的load方法需要json查询参数:serializeJSON只能被表单调用
@@ -25,25 +25,3 @@ $.fn.serializeJSON = function() {
 	return params;
 }
 
-//处理角色
-function roleFormatter(value, row, index) {
-	if(value==0){
-		return "新注册人员";
-	}
-	if(value==1){
-		return "超级管理员";
-	}
-	if(value==2){
-		return "财务人员";
-	}
-	if(value==3){
-		return "财务总监";
-	}
-	if(value==4){
-		return "核心企业操作员";
-	}
-	if(value==5){
-		return "管理员";	
-	}
-	
-}

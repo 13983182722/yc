@@ -9,54 +9,79 @@
 </head>
 <body>
 
-	<table id="dg" title="未读消息" class="easyui-datagrid"
-		style="width: 100%; height: 540px" url="/message/getNoRedMsg"
+	<table id="dg" title="订单管理" class="easyui-datagrid"
+		style="width: 100%; height: 540px" url="/order/getOrder"
 		toolbar="#toolbar" pagination="true" rownumbers="true"
 		fitColumns="true" singleSelect="true">
 		<thead>
 			<tr>
-				<th field="msgTitle" width="30%">消息标题</th>
-				<!-- <th field="msgContent" width="50">消息内容</th> -->
-				<th field="createTime" width="50">创建日期</th>
-				<th field="state" formatter="msgStateFormatter" width="50">查看状态</th>
+				<th field="customerName" width="50">客户名称</th>
+				<th field="customerTel" width="50">客户电话</th>
+				<th field="customerIdCard" width="50">客户身份证</th>
+				<th field="roomTypeId" width="50">房间类型</th>
+				<th field="roomLevelId" width="50">房间档次</th>
+				<th field="arriveTime" width="50">到店时间</th>
+				<th field="priority" width="50">优先级</th>
+				<th field="state" width="50">状态</th>
+				<th field="orderTime" width="50">订单日期</th>
 			</tr>
 		</thead>
 	</table>
 	<div id="toolbar">
 		<a href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-add" plain="true" onclick="newUser()">查看详情</a>
+			iconCls="icon-add" plain="true" onclick="newOrder()">新增订单</a> <a
+			href="javascript:void(0)" class="easyui-linkbutton"
+			iconCls="icon-edit" plain="true" onclick="editOrder()">订单信息修改</a> <a
+			href="javascript:void(0)" class="easyui-linkbutton"
+			iconCls="icon-remove" plain="true" onclick="destroyOrder()">删除</a>
 	</div>
 
-	<div id="dlg" class="easyui-dialog" style="width: 550px; height: 450px"
-		closed="true" buttons="#dlg-buttons">
+	<div id="dlg" class="easyui-dialog" style="width: 400px" closed="true"
+		 buttons="#dlg-buttons">
 		<form id="fm" method="post" novalidate
 			style="margin: 0; padding: 20px 50px">
+			<input type="hidden" name="customerId">
 			<div
-				style="margin-bottom: 20px; font-size: 14px; border-bottom: 1px solid #ccc">通知详情</div>
-			<div style="margin-bottom: 10px">
-				<input name="msgTitle" class="easyui-textbox" label="消息标题:"
-					readonly="readonly" style="width: 400px">
-			</div>
-			<div style="margin-bottom: 10px">
-				<input name="createTime" class="easyui-textbox" label="创建日期:"
-					readonly="readonly" style="width: 400px">
-			</div>
-			<div style="margin-bottom: 10px">
-				<input name="msgContent" class="easyui-textbox" data-options="multiline:true" label="消息内容:"
-					style="width: 400px; height: 200px">
-			</div>
+				style="margin-bottom: 20px; font-size: 14px; border-bottom: 1px solid #ccc">
+				订单信息</div>
+			<table>
+				<tr>
+					<td>客户姓名</td>
+					<td><input name="customerName" class="easyui-validatebox"
+						required="true"></td>
+				</tr>
+				<tr>
+					<td>客户电话</td>
+					<td><input name="customerTel"></td>
+				</tr>
+				<tr>
+					<td>客户身份证</td>
+					<td><input name="customerIdCard"></td>
+					</td>
+				</tr>
+				<tr>
+					<td>客户身份</td>
+					<td><input type="radio" name="level" value="1">普通客户 <input
+						type="radio" name="level" value="2">贵宾</td>
+				</tr>
+				<tr>
+					<td>备注</td>
+					<td><input name="notes"></td>
+				</tr>
+			</table>
 		</form>
 	</div>
 	<div id="dlg-buttons">
 		<a href="javascript:void(0)" class="easyui-linkbutton c6"
-			iconCls="icon-ok" onclick="saveUser()" style="width: 90px">标记已读</a> <a
+			iconCls="icon-ok" onclick="saveUser()" style="width: 90px">保存</a> <a
 			href="javascript:void(0)" class="easyui-linkbutton"
 			iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')"
 			style="width: 90px">关闭</a>
 	</div>
+	
 	<script type="text/javascript">
 		var url;
-		function newUser() {
+		function newOrder() {
 			var row = $('#dg').datagrid('getSelected');
 			if (row) {
 				$('#dlg').dialog('open').dialog('center').dialog('setTitle',
@@ -65,7 +90,7 @@
 				url = '/message/hasRead?id=' + row.msgId;
 			}
 		}
-		function saveUser() {
+		function saveOrder() {
 			$('#fm').form('submit', {
 				url : url,
 				onSubmit : function() {

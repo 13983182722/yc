@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.mapper.RoomTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.pojo.RoomType" >
+    <id column="room_type_id" property="roomTypeId" jdbcType="INTEGER" />
+    <result column="room_type_name" property="roomTypeName" jdbcType="VARCHAR" />
+    <result column="room_price" property="roomPrice" jdbcType="DOUBLE" />
+    <result column="room_weekend_price" property="roomWeekendPrice" jdbcType="DOUBLE" />
+    <result column="bed_num" property="bedNum" jdbcType="INTEGER" />
+    <result column="notes" property="notes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    room_type_id, room_type_name, room_price, room_weekend_price, bed_num, notes
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yc.pojo.RoomTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from room_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from room_type
+    where room_type_id = #{roomTypeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from room_type
+    where room_type_id = #{roomTypeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yc.pojo.RoomTypeExample" >
+    delete from room_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yc.pojo.RoomType" >
+    insert into room_type (room_type_id, room_type_name, room_price, 
+      room_weekend_price, bed_num, notes
+      )
+    values (#{roomTypeId,jdbcType=INTEGER}, #{roomTypeName,jdbcType=VARCHAR}, #{roomPrice,jdbcType=DOUBLE}, 
+      #{roomWeekendPrice,jdbcType=DOUBLE}, #{bedNum,jdbcType=INTEGER}, #{notes,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.pojo.RoomType" >
+    insert into room_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roomTypeId != null" >
+        room_type_id,
+      </if>
+      <if test="roomTypeName != null" >
+        room_type_name,
+      </if>
+      <if test="roomPrice != null" >
+        room_price,
+      </if>
+      <if test="roomWeekendPrice != null" >
+        room_weekend_price,
+      </if>
+      <if test="bedNum != null" >
+        bed_num,
+      </if>
+      <if test="notes != null" >
+        notes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roomTypeId != null" >
+        #{roomTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="roomTypeName != null" >
+        #{roomTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomPrice != null" >
+        #{roomPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="roomWeekendPrice != null" >
+        #{roomWeekendPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="bedNum != null" >
+        #{bedNum,jdbcType=INTEGER},
+      </if>
+      <if test="notes != null" >
+        #{notes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yc.pojo.RoomTypeExample" resultType="java.lang.Integer" >
+    select count(*) from room_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update room_type
+    <set >
+      <if test="record.roomTypeId != null" >
+        room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.roomTypeName != null" >
+        room_type_name = #{record.roomTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomPrice != null" >
+        room_price = #{record.roomPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.roomWeekendPrice != null" >
+        room_weekend_price = #{record.roomWeekendPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bedNum != null" >
+        bed_num = #{record.bedNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.notes != null" >
+        notes = #{record.notes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update room_type
+    set room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
+      room_type_name = #{record.roomTypeName,jdbcType=VARCHAR},
+      room_price = #{record.roomPrice,jdbcType=DOUBLE},
+      room_weekend_price = #{record.roomWeekendPrice,jdbcType=DOUBLE},
+      bed_num = #{record.bedNum,jdbcType=INTEGER},
+      notes = #{record.notes,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.pojo.RoomType" >
+    update room_type
+    <set >
+      <if test="roomTypeName != null" >
+        room_type_name = #{roomTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomPrice != null" >
+        room_price = #{roomPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="roomWeekendPrice != null" >
+        room_weekend_price = #{roomWeekendPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="bedNum != null" >
+        bed_num = #{bedNum,jdbcType=INTEGER},
+      </if>
+      <if test="notes != null" >
+        notes = #{notes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where room_type_id = #{roomTypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.pojo.RoomType" >
+    update room_type
+    set room_type_name = #{roomTypeName,jdbcType=VARCHAR},
+      room_price = #{roomPrice,jdbcType=DOUBLE},
+      room_weekend_price = #{roomWeekendPrice,jdbcType=DOUBLE},
+      bed_num = #{bedNum,jdbcType=INTEGER},
+      notes = #{notes,jdbcType=VARCHAR}
+    where room_type_id = #{roomTypeId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -24,7 +24,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<!-- 配置文件的地址 如果不配置contextConfigLocation， 默认查找的配置文件名称classpath下的：servlet名称+"-serlvet.xml"即：springmvc-serlvet.xml -->
-			<param-value>classpath:spring/springmvc.xml</param-value>
+			<param-value>classpath:spring/applicationContext-mvc.xml</param-value>
 		</init-param>
 
 	</servlet>
